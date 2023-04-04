@@ -1,0 +1,91 @@
+{
+  "players": {
+    "ROHIT SHARMA": [
+      100,
+      0
+    ],
+    "VIRAT KOHLI": [
+      200,
+      0
+    ],
+    "DAVID WARNER": [
+      150,
+      0
+    ],
+    "STEVE SMITH": [
+      100,
+      0
+    ],
+    "JASPRIT BUMRAH": [
+      0,
+      4
+    ],
+    "MITCHELL STARC": [
+      0,
+      7
+    ],
+    "PAT CUMMINS": [
+      30,
+      3
+    ],
+    "JOFRA ARCHER": [
+      50,
+      2
+    ],
+    "KAGISO RABADA": [
+      70,
+      3
+    ],
+    "AB DE VILLIERS": [
+      150,
+      3
+    ],
+    "CHRIS MORRIS": [
+      0,
+      4
+    ],
+    "YUZVENDRA CHAHAL": [
+      0,
+      4
+    ],
+    "SURYAKUMAR YADAV": [
+      120,
+      0
+    ],
+    "ISHAN KISHAN": [
+      100,
+      0
+    ],
+    "SHUBMAN GILL": [
+      100,
+      0
+    ],
+    "RAVINDRA JADEJA": [
+      100,
+      5
+    ]
+  },
+  "teams": {
+    "MUMBAI INDIANS": [
+      "ROHIT SHARMA",
+      "VIRAT KOHLI",
+      "JASPRIT BUMRAH",
+      "MITCHELL STARC",
+      "PAT CUMMINS"
+    ],
+    "SUNRISERS HYDERABAD": [
+      "DAVID WARNER",
+      "STEVE SMITH",
+      "PAT CUMMINS",
+      "JOFRA ARCHER",
+      "KAGISO RABADA"
+    ],
+    "ROYAL CHALLENGERS BANGALORE": [
+      "AB DE VILLIERS",
+      "CHRIS MORRIS",
+      "YUZVENDRA CHAHAL",
+      "SURYAKUMAR YADAV",
+      "RAVINDRA JADEJA"
+    ]
+  }
+}
