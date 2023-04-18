@@ -1,9 +1,11 @@
 import React from "react";
-import data from "./data1.json";
+import data from "./data.json";
 
 function App() {
   const [uiState, setUiState] = React.useState("Home");
   const [currentTeam, setCurrentTeam] = React.useState("");
+  const [currentRank, setCurrentRank] = React.useState(0);
+  const [currentScore, setCurrentScore] = React.useState(0);
   const [sortedTeamScore, setSortedTeamScore] = React.useState({});
   let teamPlayersUI = null;
 
@@ -11,6 +13,7 @@ function App() {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+    flexDirection: "column",
   };
 
   const centerStyle = {
@@ -19,35 +22,37 @@ function App() {
 
   React.useEffect(() => {
     const teamScore = Object.keys(data.teams).reduce((acc, team) => {
-      const teamPlayers = data.teams[team];
-      const teamTotalScore = teamPlayers.reduce((acc, player) => {
-        console.log(player);
-        return acc + data.players[player][0] + data.players[player][1] * 20;
-      }, 0);
+      const teamTotalScore = data.teams[team].reduce(
+        (acc, player) =>
+          acc + data.players[player][0] + data.players[player][1] * 20,
+        0
+      );
       return { ...acc, [team]: teamTotalScore };
     }, {});
     const sortedTeamScore = Object.keys(teamScore)
       .sort((a, b) => teamScore[b] - teamScore[a])
-      .reduce((acc, team) => {
-        return { ...acc, [team]: teamScore[team] };
-      }, {});
+      .reduce((acc, team) => ({ ...acc, [team]: teamScore[team] }), {});
     setSortedTeamScore(sortedTeamScore);
   }, []);
 
-  const teamScoreUI = Object.keys(sortedTeamScore).map((team) => {
+  const teamScoreUI = Object.keys(sortedTeamScore).map((team, index) => {
     return (
       <tr key={team}>
+        <td style={centerStyle}>{data.forms[team]}</td>
+        <td style={centerStyle}>{index + 1}</td>
         <td>
           <a
             onClick={() => {
               setUiState("Team");
               setCurrentTeam(team);
+              setCurrentRank(index + 1);
+              setCurrentScore(sortedTeamScore[team]);
             }}
           >
             {team}
           </a>
         </td>
-        <td style={divStyle}>{sortedTeamScore[team]}</td>
+        <td style={centerStyle}>{sortedTeamScore[team]}</td>
       </tr>
     );
   });
@@ -65,13 +70,15 @@ function App() {
   }
 
   return (
-    <div style={divStyle}>
+    <React.Fragment>
       {uiState === "Home" && (
-        <div>
+        <div style={divStyle}>
           <h1 style={centerStyle}>Score Board</h1>
           <table>
             <thead>
               <tr>
+                <th>Form No.</th>
+                <th>Rank</th>
                 <th>Team</th>
                 <th>Score</th>
               </tr>
@@ -81,7 +88,7 @@ function App() {
         </div>
       )}
       {uiState === "Team" && (
-        <div>
+        <div style={divStyle}>
           <h1 style={centerStyle}>{currentTeam}</h1>
           <table>
             <thead>
@@ -94,6 +101,15 @@ function App() {
             <tbody>{teamPlayersUI}</tbody>
           </table>
           <br />
+          <p style={centerStyle}>
+            <b>Rank: </b>
+            {currentRank}
+            <br />
+            <b>Score: </b>
+            {currentScore}
+            <br />
+            <b>Form No.: </b> {data.forms[currentTeam]}
+          </p>
           <br />
           <a
             style={divStyle}
@@ -106,7 +122,7 @@ function App() {
           </a>
         </div>
       )}
-    </div>
+    </React.Fragment>
   );
 }
 
